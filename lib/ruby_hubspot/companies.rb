@@ -15,7 +15,7 @@ module Companies
   def create_company(**params)
     validate_access_token
 
-    response(POST, INDIVIDUAL_COMPANY, params)
+    response(POST, INDIVIDUAL_COMPANY, **params)
   end
 
   # shows a company
@@ -34,7 +34,7 @@ module Companies
     params_to_update = params.dup
     params_to_update.delete(:id)
 
-    response(PUT, individual_company_path(params[:id]), params_to_update)
+    response(PUT, individual_company_path(params[:id]), **params_to_update)
   end
 
   # deletes a company

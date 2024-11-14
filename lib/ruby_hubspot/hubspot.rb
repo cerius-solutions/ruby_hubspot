@@ -24,7 +24,7 @@ class Hubspot
   def request(http_method, path, **params)
     validate_access_token
 
-    response(http_method, path, params)
+    response(http_method, path, **params)
   end
 
   private
@@ -33,7 +33,7 @@ class Hubspot
     Faraday.send(http_method) do |request|
       request.url(API_URL + path)
       request.headers = headers
-      request.body = body(path, params)
+      request.body = body(path, **params)
     end
   end
 

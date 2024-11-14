@@ -15,7 +15,7 @@ module Contacts
   def create_contact(**params)
     validate_access_token
 
-    response(POST, INDIVIDUAL_CONTACT, params)
+    response(POST, INDIVIDUAL_CONTACT, **params)
   end
 
   # creates or updates a contact
@@ -23,7 +23,7 @@ module Contacts
     validate_access_token
     email_handler(params[:email])
 
-    response(POST, INDIVIDUAL_CONTACT + CREATE_OR_UPDATE + EMAIL + params[:email].to_s, params)
+    response(POST, INDIVIDUAL_CONTACT + CREATE_OR_UPDATE + EMAIL + params[:email].to_s, **params)
   end
 
   # shows a contact
@@ -40,7 +40,7 @@ module Contacts
     params_to_update = params.dup
     params_to_update.delete(:id)
 
-    response(POST, INDIVIDUAL_CONTACT + find_idintificator(params) + PROFILE, params_to_update)
+    response(POST, INDIVIDUAL_CONTACT + find_idintificator(params) + PROFILE, **params_to_update)
   end
 
   # deletes a contact
